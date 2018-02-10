@@ -17,18 +17,40 @@ class SampleController extends Controller
     public function index(MovieRepository $movies)
     {
         $movieList = $movies->getMovieList();
+        $latestMovie = end($movieList);
+        foreach($movieList as $mov=>$m){
+            echo "<pre>". $mov.' => '.$m."</pre>";
+        }
+        echo("var_dump(compact('movieList')); resulta:");
+       var_dump(compact('movieList'));
+       
+        $a='aa';
+        $b='bb';
+        $c='cc';
+        $abc=compact("a","b","c");
+        var_dump($abc);
+       // $qq;
+        $ab=['x','y','z'];
+        var_dump(compact('ab'));
+        print_r(compact('ab'));
+        $endab = end($ab);
+        var_dump(compact('ab','endab','movieList','latestMovie'));
+//echo "<pre>".print_r($abc)."<pre>";
+        
 
-        return view('welcome', compact('movieList'));
+        return view('welcome', compact('ab','endab','movieList','latestMovie'));
+        //sau AICI E SECRETUL LA CUM COMPACTEAZA KEY VALUE SI BLADE REDA FOREACH
+       // return view('welcome', ['ab'=>['x','y','z']]);
     }
 
     /**
      * pass an array to the 'foo' view
      * as a second parameter.
     */
-    public function foo()
+    public function biz()
     {
         return view('foo', [
-            'key' => 'The big brown fox jumped over the lazy dog'
+            'key_test' => 'value_test_Biz'
         ]);
     }
 
@@ -39,9 +61,9 @@ class SampleController extends Controller
     */
     public function bar()
     {
-        $key = 'If a would chuck can chuck wood,';
+        $key_test = 'value_test_Bar';
 
-        return view('foo', compact('key'));
+        return view('foo', compact('key_test'));
     }
 
     /**
@@ -50,9 +72,6 @@ class SampleController extends Controller
     */
     public function baz()
     {
-        return view('foo')->with(
-            'key',
-            'How much woood would a woodchuck chuck.'
-        );
+        return view('foo')->with('key_test','value_test_Baz');
     }
 }

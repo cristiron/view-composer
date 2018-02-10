@@ -13,7 +13,7 @@
 
 Route::get('/', 'SampleController@index');
 
-Route::get('/foo', 'SampleController@foo');
+Route::get('/biz', 'SampleController@biz');
 
 Route::get('/bar', 'SampleController@bar');
 

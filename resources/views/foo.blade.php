@@ -1,5 +1,5 @@
 @extends('app')
 
 @section('content')
-{{ $key }}
+{{ $key_test }}
 @endsection
